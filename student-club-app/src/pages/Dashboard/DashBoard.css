@@ -1,0 +1,12 @@
+.home{
+    background-color: rgba(156, 203, 226, 0.756);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+}
+
+.home img {
+    border-radius: 20px;
+}
