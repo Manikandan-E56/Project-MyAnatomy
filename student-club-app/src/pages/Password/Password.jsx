@@ -1,17 +1,86 @@
-import React from 'react'
-import Header from '../../components/Header/Header'
-import './Password.css'
+import React, { useState } from "react";
+import Header from "../../components/Header/Header"; // Assuming this path is correct
+import "./Password.css";
 
 export default function Password() {
-  return (
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    if (newPassword !== confirmPassword) {
+      alert("New passwords do not match!");
+      return;
+    }
    
-        <div className="passwordmain">
-            <Header/>
-            <div className="passcontent">
-                <label>Name :</label><h2>Alice</h2>
-                <label>Roll No :</label><h2>7178221234</h2>
-            </div>
+    console.log("Attempting to change password with:", {
+      currentPassword,
+      newPassword,
+    });
+    alert("Password change request submitted!");
+  };
+
+  return (
+    <div className="password-page">
+      <Header />
+      <div className="password-container">
+        {/* User Info Section */}
+        <div className="user-info">
+          <h1>User Details</h1>
+          <div className="info-item">
+            <label>Name:</label>
+            <span>Alice</span>
+          </div>
+          <div className="info-item">
+            <label>Roll No:</label>
+            <span>7178221234</span>
+          </div>
         </div>
 
-  )
+        {/* Password Change Form */}
+        <form className="change-password-form" onSubmit={handleSubmit}>
+          <h2>Change Password</h2>
+          <div className="form-group">
+            <label htmlFor="current-pass">Current Password</label>
+            <input
+              type="password"
+              id="current-pass"
+              placeholder="Enter your current password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="new-pass">New Password</label>
+            <input
+              type="password"
+              id="new-pass"
+              placeholder="Enter your new password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirm-pass">Confirm New Password</label>
+            <input
+              type="password"
+              id="confirm-pass"
+              placeholder="Confirm your new password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="changepass-btn" type="submit">
+            Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
