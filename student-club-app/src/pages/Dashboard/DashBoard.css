@@ -1,5 +1,8 @@
 .hmain{
     background: rgba(193, 211, 220, 0.756);
+    width: 100%;
+    height: 100vh;
+     
 }
 
 .home {
@@ -7,11 +10,11 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 90vh;
+  height: 70vh;
   overflow: hidden;
 }
 
-/* 1. The "window" for the slideshow */
+
 .dimage {
   width: 45%;
   height: 400px;
@@ -20,9 +23,8 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* 2. The "filmstrip" that holds and moves the images */
 .slideshow-filmstrip {
-  /* IMPORTANT: Width is 500% because we have 5 images */
+
   width: 500%;
   height: 100%;
   display: flex;
@@ -72,7 +74,7 @@
   font-size: 60px;
 }
 .header_text h1 span {
-  /* Your gradient text styles */
+  
   color: #8ca921;
   background-image: linear-gradient(45deg, #8ca921 , #d93088 50%, #24c923 100%);
   background-clip: text;
@@ -86,5 +88,27 @@
   font-size: 20px;
   color: #333;
   margin-top: 10px;
+  
+}
+
+.activits{
+  margin: 0px 20px 0px;
+}
+
+.activity-list{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.activity-item{
+  width: 200px;
+  height: 100px;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   
 }
