@@ -13,8 +13,8 @@ header{
 }
 
 .navcontent img{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 .navcontent button{
     background-color: #9698eb;
@@ -32,7 +32,11 @@ header{
     font-size: 20px;
     font-weight: 600;
     list-style: none;
-    margin: 0 20px;
+    margin: 0 60px;
     cursor: pointer;
     font-family: poppins ,sans-serif;
+}
+.navcontent ul li:hover{
+    color: #9698eb;
+    transition: 0.5s ease-in-out;
 }
