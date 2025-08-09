@@ -22,6 +22,11 @@ header{
     font-size: 20px;
     margin: 0%;
 }
+.navcontent button:hover{
+    background-color: #fbfbfb;
+    color: #9698eb;
+    transition: 0.5s ease-in-out;
+}
 
 .navcontent ul{
     display: flex;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../../components/Header/Header"; // Assuming this path is correct
 import "./Password.css";
 import { toast } from "react-toastify";
+import Footer from "../../components/Footer/Footer";
 
 export default function Password() {
 
@@ -28,7 +29,7 @@ export default function Password() {
     <div className="password-page">
       <Header />
       <div className="password-container">
-        {/* User Info Section */}
+        
         <div className="user-info">
           <h1>User Details</h1>
           <div className="info-item">
@@ -41,7 +42,7 @@ export default function Password() {
           </div>
         </div>
 
-        {/* Password Change Form */}
+        
         <form className="change-password-form" onSubmit={handleSubmit}>
           <h2>Change Password</h2>
           <div className="form-group">
@@ -82,6 +83,7 @@ export default function Password() {
           </button>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 }

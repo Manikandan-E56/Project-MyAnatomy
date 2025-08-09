@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import "./DashBoard.css";
+import Footer from "../../components/Footer/Footer";
 
 export default function DashBoard() {
   return (
@@ -37,6 +38,7 @@ export default function DashBoard() {
           <div className="activity-item">Networking</div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
