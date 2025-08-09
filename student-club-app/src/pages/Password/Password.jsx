@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header"; // Assuming this path is correct
 import "./Password.css";
+import { toast } from "react-toastify";
 
 export default function Password() {
 
@@ -12,7 +13,7 @@ export default function Password() {
   const handleSubmit = (event) => {
     event.preventDefault(); 
     if (newPassword !== confirmPassword) {
-      alert("New passwords do not match!");
+      toast.error("New passwords do not match!");
       return;
     }
    
@@ -20,7 +21,7 @@ export default function Password() {
       currentPassword,
       newPassword,
     });
-    alert("Password change request submitted!");
+    toast.success("Password change request submitted!");
   };
 
   return (

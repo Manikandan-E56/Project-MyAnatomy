@@ -32,9 +32,9 @@
   animation: slide-four-images 20s ease-in-out infinite;
 }
 
-/* 3. Styles for each image in the filmstrip */
+
 .slideshow-filmstrip img {
-  /* IMPORTANT: Width of each image is 20% (100% / 5 images) */
+
   width: 20%;
   height: 100%;
   
@@ -43,15 +43,15 @@
 
 /* 4. The keyframes for the animation */
 @keyframes slide-four-images {
-  /* Start on Image 1 */
+  
   0% { transform: translateX(0%); }
   20% { transform: translateX(0%); }
 
-  /* Move to Image 2 */
+  
   25% { transform: translateX(-20%); }
   45% { transform: translateX(-20%); }
 
-  /* Move to Image 3 */
+  
   50% { transform: translateX(-40%); }
   70% { transform: translateX(-40%); }
   
