@@ -11,7 +11,7 @@ export default function () {
         <div className="club-items">
 
             <div className="clubs">
-                <img src="Blood.png" alt="" />
+                <img src="Blood.png" alt="cd" />
                 <h2>Blood Donation</h2>
                 <p>Description of the club.</p>
                 <button>Join Club</button>
