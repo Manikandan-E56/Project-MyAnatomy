@@ -3,9 +3,12 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
+import { StudentContext } from "../Context/StudentContext";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const { setToken } = React.useContext(StudentContext);
 
   const [data, setData] = useState({
     rollNo: "",
@@ -36,6 +39,7 @@ export default function Login() {
       const response = await axios.post(url, data);
 
       if (response.status === 200) {
+        setToken(response.data.token);
         toast.success("Login successful");
         navigate("/dashboard");
       } else {
@@ -74,7 +78,10 @@ export default function Login() {
           </div>
 
           <hr />
-          <button type="button" onClick={() => toast.info("Google Sign-In coming soon!")}>
+          <button
+            type="button"
+            onClick={() => toast.info("Google Sign-In coming soon!")}
+          >
             <img src="/google.png" alt="" />
             Sign in with Google
           </button>

@@ -10,7 +10,7 @@ import About from "./pages/About/About";
 import Posts from "./pages/Posts/Posts";
 import Clubs from "./pages/Clubs/Clubs";
 import { ToastContainer } from "react-toastify";
-import StudentProvider from "../Context/StudentContext";
+import StudentProvider from "./Context/StudentContext";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       <StudentProvider>
         <ToastContainer />
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/password" element={<Password />} />

@@ -57,7 +57,7 @@ export default function SignUp() {
 
             <button type="submit">Sign up</button>
             <p>
-              Already User ? <span onClick={()=>navigate('/')} >Login</span>
+              Already User ? <span onClick={()=>navigate('/login')} >Login</span>
             </p>
           </div>
           <hr />
