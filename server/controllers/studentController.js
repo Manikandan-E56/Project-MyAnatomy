@@ -6,9 +6,9 @@ const { hash } = require('bcrypt');
 const register = async (req, res) => {
 
     try {
-        const { name, registerNumber, email, password } = req.body;
+        const { name, rollNo, email, password } = req.body;
 
-        if (!name || !registerNumber || !email || !password) {
+        if (!name || !rollNo || !email || !password) {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
@@ -29,7 +29,7 @@ const register = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const newStudent = await Student.create({ name, registerNumber, email, password: hashedPassword });
+        const newStudent = await Student.create({ name, rollNo, email, password: hashedPassword });
         console.log("Student created:", newStudent);
         return res.status(201).json({ message: 'Student registered successfully' });
     } catch (err) {
@@ -40,16 +40,19 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const { registerNumber, password } = req.body;
+        const { rollNo, password } = req.body;
 
-        if(registerNumber === "" || registerNumber.trim() === "" || password === "" || password.trim() === "") {
+        if(rollNo === "" || rollNo.trim() === "" || password === "" || password.trim() === "") {
             return res.status(400).json({ message: 'Please fill in all fields' });
         }
-        const exisitingStudent = await Student.findOne({ registerNumber});
+        const exisitingStudent = await Student.findOne({ rollNo});
         if(exisitingStudent) {
             const checkPassword = await bcrypt.compare(password, exisitingStudent.password);
             if(checkPassword) {
-                return res.status(200).json({ message: 'Login successful' });
+
+                return res.status(200).json(
+                    
+                    { message: 'Login successful' });
             } else {
                 return res.status(401).json({ message: 'Invalid password' });
             }
