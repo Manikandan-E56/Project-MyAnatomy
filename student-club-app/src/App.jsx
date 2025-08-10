@@ -10,11 +10,13 @@ import About from "./pages/About/About";
 import Posts from "./pages/Posts/Posts";
 import Clubs from "./pages/Clubs/Clubs";
 import { ToastContainer } from "react-toastify";
+import StudentProvider from "../Context/StudentContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <StudentProvider>
         <ToastContainer />
           <Routes>
             <Route path="/" element={<Login />} />
@@ -25,7 +27,7 @@ function App() {
             <Route path="/posts" element={<Posts />} />
             <Route path="/clubs" element={<Clubs />} />
           </Routes>
-        
+        </StudentProvider>
       </BrowserRouter>
     </>
     

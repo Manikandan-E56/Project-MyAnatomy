@@ -1,9 +1,12 @@
-
+import React, { useContext } from "react";
 import "./Header.css"; // Assuming you have a CSS file for styling
 import { useNavigate } from "react-router-dom";
+import { StudentContext } from "../../../Context/StudentContext";
 
 export default function Header() {
   const navigate = useNavigate();
+
+  const { token } = useContext(StudentContext);
 
   return (
     <header>
@@ -15,7 +18,11 @@ export default function Header() {
           <li onClick={() => navigate("/posts")}>Post</li>
           <li onClick={() => navigate("/about")}>About</li>
         </ul>
-        <button>sign in</button>
+        {token?<button onClick={()=>navigate('/login')}>sign in</button>:
+        <div>
+            <img src="user.png" alt="" className="userprofile" onClick={()=>navigate('/password')} />
+
+        </div>}
       </div>
     </header>
   );
