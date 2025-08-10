@@ -23,6 +23,7 @@ export default function () {
                 <button>Join Club</button>
             </div>
             
+            
 
 
         </div>
