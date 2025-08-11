@@ -8,29 +8,29 @@ const StudentProvider = ({ children }) => {
   const [token, setToken] = React.useState("");
   const [userDetails, setUserDetails] = React.useState(null);
 
-  // const fetchUserDetails = () => {
-  //   const storedToken = token || localStorage.getItem("token");
+  const fetchUserDetails = () => {
+    const storedToken = token || localStorage.getItem("token");
 
-  //   if (storedToken) {
-  //     setToken(storedToken);
-  //     axios
-  //       .get("http://localhost:5000/api/user/me", {
-  //         headers: {
-  //           Authorization: `Bearer ${storedToken}`,
-  //         },
-  //       })
-  //       .then((res) => {
-  //         setUserDetails(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.error("Error fetching user details:", err);
-  //       });
-  //   }
-  // };
+    if (storedToken) {
+      setToken(storedToken);
+      axios
+        .get("http://localhost:3000/api/user/me", {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((res) => {
+          setUserDetails(res.data);
+        })
+        .catch((err) => {
+          console.error("Error fetching user details:", err);
+        });
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchUserDetails();
-  // }, []);
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
 
   const contextValue = {
     token,
