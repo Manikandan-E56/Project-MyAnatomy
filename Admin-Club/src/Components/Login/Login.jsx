@@ -31,7 +31,7 @@ export default function Login() {
 
   //   const { rollNo, password } = data;
 
-  //   if (!rollNo || !password) {
+  //   if (!email || !password) {
   //     toast.error("Please fill all fields");
   //     return;
   //   }
