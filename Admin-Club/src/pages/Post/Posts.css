@@ -1,0 +1,64 @@
+.post {
+  display: flex;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* Keep sidebar fixed */
+.post > .sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+
+.postContainer {
+  flex: 1;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto; 
+  align-self: center; 
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postCard {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.postCard h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.postCard .date {
+  font-size: 14px;
+  color: gray;
+  margin: 5px 0 15px;
+}
+
+.postCard .description {
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.coordinator {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.coordinator p {
+  margin: 5px 0;
+}

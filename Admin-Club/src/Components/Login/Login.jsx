@@ -60,7 +60,7 @@ export default function Login() {
             <input
               type="text"
               placeholder="Enter Email"
-              name="rollNo"
+              name="Email"
               value={data.rollNo}
               onChange={changehandle}
             />
