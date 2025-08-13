@@ -1,67 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+//import { StudentContext } from "../../Context/StudentContext"; // adjust path
 import "./Login.css";
-
-
 
 export default function Login() {
   const navigate = useNavigate();
+  //const { setToken } = useContext(StudentContext);
 
- // const { setToken } = React.useContext(StudentContext);
-
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const [data, setData] = useState({ email: "", password: "" });
 
   const changehandle = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setData((prev) => ({ ...prev, [name]: value }));
   };
 
   const url = "http://localhost:3000/api/auth/admin/login";
 
-  // const loginHandler = async (e) => {
-  //   e.preventDefault();
+  const loginHandler = async (e) => {
+    e.preventDefault();
 
-  //   const { rollNo, password } = data;
+    const { email, password } = data;
 
-  //   if (!email || !password) {
-  //     toast.error("Please fill all fields");
-  //     return;
-  //   }
-  //   console.log("Login data:", data);
-  //   try {
-  //     const response = await axios.post(url, data);
+    if (!email || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
 
-  //     if (response.status === 200) {
-  //       setToken(response.data.token);
-  //       toast.success("Login successful");
-  //       navigate("/dashboard");
-  //     } else {
-  //       toast.error("Login failed");
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.response?.data?.message || "Login failed");
-  //   }
-  // };
+    try {
+      const response = await axios.post(url, data);
+
+      if (response.status === 200) {
+        const token = response.data.token;
+        //setToken(token);
+        //localStorage.setItem("token", token);
+        toast.success("Login successful");
+        navigate("/posts");
+      } else {
+        toast.error("Login failed");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response?.data?.message || "Login failed");
+    }
+  };
 
   return (
     <div className="lbox">
-      <form >
+      <form onSubmit={loginHandler}>
         <div className="login-container">
           <h2>Login</h2>
           <div className="items">
             <input
               type="text"
               placeholder="Enter Email"
-              name="Email"
-              value={data.rollNo}
+              name="email"
+              value={data.email}
               onChange={changehandle}
             />
             <input

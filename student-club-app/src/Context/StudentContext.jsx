@@ -14,7 +14,7 @@ const StudentProvider = ({ children }) => {
     if (storedToken) {
       setToken(storedToken);
       axios
-        .get("http://localhost:3000/api/user/me", {
+        .get("http://localhost:3000/api/user", {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
