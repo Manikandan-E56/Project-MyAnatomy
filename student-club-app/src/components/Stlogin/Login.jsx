@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-import { StudentContext } from "../Context/StudentContext";
+import { StudentContext } from "../../Context/StudentContext";
 
 export default function Login() {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import './Settings.css';
 import SideBar from '../../components/SideBar/SideBar';
-import { AdminContext } from '../../Contexts/AdminContext';
+import { AdminContext } from '../../Context/AdminContext';
 import { useContext } from 'react';
 
 export default function Settings() {

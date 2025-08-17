@@ -10,7 +10,7 @@ export default function Password() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { token,  userDetails, setUserDetails } = React.useContext(StudentContext);
+  //const { token,  userDetails, setUserDetails } = React.useContext(StudentContext);
   
   const handleSubmit = (event) => {
     event.preventDefault(); 
@@ -35,11 +35,11 @@ export default function Password() {
           <h1>User Details</h1>
           <div className="info-item">
             <label>Name:</label>
-            <span>{userDetails.Name}</span>
+            <span>mani</span>
           </div>
           <div className="info-item">
             <label>Roll No:</label>
-            <span>{userDetails.rollNo}</span>
+            <span>717822d128</span>
           </div>
         </div>
 
