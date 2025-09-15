@@ -6,11 +6,11 @@ export default function Posts() {
   return (
     
         <div className="posts-container">
-        <Header/>
+          <Header/>
             <h1>Posts Page</h1>
             <p>This is where you can view and manage posts related to student clubs.</p>
             
-            <Footer/>
+          <Footer/>
         </div>
     
   )

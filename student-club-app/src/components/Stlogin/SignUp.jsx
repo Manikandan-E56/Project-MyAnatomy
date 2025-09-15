@@ -15,7 +15,8 @@ export default function SignUp() {
     name: "",
     rollNo: "",
     email: "",
-    password: ""
+    password: "",
+    roll:"Student"
    });
 
    const url= "http://localhost:3000/api/auth/signup";
