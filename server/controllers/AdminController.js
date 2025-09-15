@@ -9,7 +9,7 @@ const createToken = (id) => {
 const security_key=222333
 const adminregister = async (req, res) => {
     try {
-        const { name, password, phone, email, clubname,securitykey } = req.body;
+        const { name, password, phone, email, clubname,securitykey ,role } = req.body;
 
         if (!name || !password || !phone || !email || !clubname) {
             return res.status(400).json({ message: 'All fields are required' });
@@ -28,9 +28,9 @@ const adminregister = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
-        const newAdmin = await Admin.create({ name, password: hashedPassword, phone, email, clubname });
+        const newAdmin = await Admin.create({ name, password: hashedPassword, phone, email, clubname,role });
 
-        console.log("Admin created:", newAdmin);
+        
         const token = createToken(newAdmin._id);
 
         return res.status(201).json({ message: 'Admin registered successfully', token });

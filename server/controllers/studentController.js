@@ -1,4 +1,4 @@
-import Student from '../models/studentSchema.js';
+import Student from '../models/StudentSchema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -10,7 +10,7 @@ const createToken = (id) => {
 
 const register = async (req, res) => {
     try {
-        const { name, rollNo, email, password } = req.body;
+        const { name, rollNo, email, password,role } = req.body;
 
         if (!name || !rollNo || !email || !password) {
             return res.status(400).json({ message: 'All fields are required' });
@@ -31,9 +31,9 @@ const register = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
-        const newStudent = await Student.create({ name, rollNo, email, password: hashedPassword });
+        const newStudent = await Student.create({ name, rollNo, email, password: hashedPassword,role });
 
-        console.log('Student created:', newStudent);
+        p
         const token = createToken(newStudent._id);
 
         return res.status(201).json({ message: 'Student registered successfully', token });
