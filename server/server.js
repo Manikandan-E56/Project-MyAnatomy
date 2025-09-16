@@ -19,10 +19,11 @@ app.use(cors());
 app.use(express.json()); 
 
 
-app.use('/api/admins', adminRoutes);
-app.use('/api/students', studentRoutes);
-app.use('/api/clubs', clubRoutes);
-app.use('/api/posts', postRoutes);
+
+app.use('/api/admin', adminRoutes);
+app.use('/api/student', studentRoutes);
+app.use('/api/club', clubRoutes);
+app.use('/api/post', postRoutes);
 
 // A simple root route to check if the server is running
 app.get('/', (req, res) => {

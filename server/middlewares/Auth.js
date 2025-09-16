@@ -19,6 +19,7 @@ export const authMiddleware = (requiredRole) => async (req, res, next) => {
         // 3. Find the user (check both collections)
         let user = await Admin.findById(decoded.id) || await Student.findById(decoded.id);
 
+        
         if (!user) {
             return res.status(404).json({ message: 'User not found.' });
         }
