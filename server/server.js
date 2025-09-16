@@ -1,31 +1,48 @@
 import express from 'express';
-
+import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import db from './middlewares/db.js';
 
-import { login, register } from './controllers/studentController.js';
-import { adminlogin, adminregister } from './controllers/AdminController.js';
+// Import all your route handlers
+import adminRoutes from './router/AdminRoute.js';
+import studentRoutes from './router/StudentRoute.js';
+import clubRoutes from './router/ClubRoute.js';
+import postRoutes from './router/PostRoute.js';
 
+// --- INITIAL SETUP ---
 dotenv.config(); 
-
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+// --- MIDDLEWARE ---
+app.use(cors()); 
+app.use(express.json()); 
 
 
-app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use('/api/admins', adminRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/clubs', clubRoutes);
+app.use('/api/posts', postRoutes);
+
+// A simple root route to check if the server is running
+app.get('/', (req, res) => {
+    res.send('Student Club Management API is running...');
+});
 
 
-db.connect(); 
 
 
-app.post('/api/auth/register', register);
-app.post('/api/auth/login', login);
-
-
-app.post('/api/auth/admin/register', adminregister);
-app.post('/api/auth/admin/login',adminlogin);
-
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}...`);
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => {
+    console.log('Successfully connected to MongoDB database.');
+   
+    app.listen(PORT, () => {
+        console.log(`Server is running on port: ${PORT}`);
+    });
+})
+.catch((err) => {
+    console.error('Database connection failed!', err.message);
 });
