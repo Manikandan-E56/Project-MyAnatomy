@@ -28,7 +28,7 @@ function App() {
             
             {/* Admin */}
 
-             <Route path="/" element={<Posts />} />
+             <Route path="/post" element={<Posts />} />
             <Route path="/Adminlogin" element={<Alogin />} />
             <Route path="/createAdmin" element={<Asignup />} />
             <Route path="/postcreate" element={<PostCreate />} />
@@ -36,7 +36,7 @@ function App() {
             <Route path="/settings" element={<Password />} />
 
             {/* Student */}
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/password" element={<Password />} />
