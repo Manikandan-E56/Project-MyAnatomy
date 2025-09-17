@@ -70,7 +70,7 @@ export default function Login() {
               value={data.password}
               onChange={changehandle}
             />
-            <button type="submit">Login</button>
+            <button type="submit" onClick={()=>navigate("/dashboard")}>Login</button>
             <p>
               Not a User?{" "}
               <span onClick={() => navigate("/signup")}>Register</span>
