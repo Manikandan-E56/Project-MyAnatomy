@@ -48,41 +48,8 @@ export default function Login() {
 
   return (
     <div className="lbox">
-      <form onSubmit={loginHandler}>
-        <div className="login-container">
-          <h2>Login</h2>
-          <div className="items">
-            <input
-              type="text"
-              placeholder="Enter Email"
-              name="email"
-              value={data.email}
-              onChange={changehandle}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={data.password}
-              onChange={changehandle}
-            />
-            <button type="submit">Login</button>
-            <p>
-              Not a User?{" "}
-              <span onClick={() => navigate("/signup")}>Register</span>
-            </p>
-          </div>
-
-          <hr />
-          <button
-            type="button"
-            onClick={() => toast.info("Google Sign-In coming soon!")}
-          >
-            <img src="/google.png" alt="" />
-            Sign in with Google
-          </button>
-        </div>
-      </form>
+        mnn
+      
     </div>
   );
 }

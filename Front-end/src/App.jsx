@@ -37,12 +37,7 @@ function App() {
 
             {/* Student */}
             <Route path="/" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/password" element={<Password />} />
-            <Route path="/about" element={<About />} /> 
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/clubs" element={<Clubs />} />
+            
           </Routes>
         </StudentProvider>
       </BrowserRouter>
