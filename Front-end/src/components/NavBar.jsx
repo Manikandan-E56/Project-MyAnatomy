@@ -138,6 +138,7 @@ export default function Navbar() {
                 onClick={() => {
                   logout();
                   setIsOpen(false);
+                  navigate("/");
                 }}
               >
                 <LogOut size={16} /> Logout

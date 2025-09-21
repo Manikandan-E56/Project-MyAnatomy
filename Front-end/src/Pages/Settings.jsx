@@ -22,8 +22,8 @@ export default function Settings() {
 
       const url =
         role === "admin"
-          ? `http://localhost:3000/api/admin/profile/${clubId}` // Admin fetches club details
-          : `http://localhost:3000/api/student/profile/${stdId}`; // Student fetches personal details
+          ? `https://project-myanatomy.onrender.com/api/admin/profile/${clubId}` // Admin fetches club details
+          : `https://project-myanatomy.onrender.com/api/student/profile/${stdId}`; // Student fetches personal details
 
       try {
         const response = await axios.get(url, {
@@ -52,12 +52,12 @@ export default function Settings() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  if (!token) {
-    Navigate("/login");
-  }
-
+  
   if (isLoading) {
     return <LoadingSpinner />;
+  }
+  if (!token) {
+    Navigate("/login");
   }
 
   return (

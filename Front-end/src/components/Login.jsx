@@ -45,7 +45,7 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const url = "http://localhost:3000/api/";
+  const url = "https://project-myanatomy.onrender.com/api/";
 
   // Select schema dynamically
   const schema =

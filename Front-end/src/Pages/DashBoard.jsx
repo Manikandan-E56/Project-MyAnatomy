@@ -36,7 +36,7 @@ const stats = {
 const pendingStudents = [];
 
 export default function Dashboard() {
-  const url = "http://localhost:3000";
+  const url = "https://project-myanatomy.onrender.com";
   const { token, role, stdId, clubId } = useAuth();
   const [search, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
@@ -66,9 +66,9 @@ export default function Dashboard() {
   let endpoint = "";
 
   if (role === "admin") {
-    endpoint = `http://localhost:3000/api/admin/dashboard/${clubId}`;
+    endpoint = `${url}/api/admin/dashboard/${clubId}`;
   } else if (role === "student") {
-    endpoint = `http://localhost:3000/api/student/dashboard/${stdId}`;
+    endpoint = `${url}/api/student/dashboard/${stdId}`;
   }
 
   const dashboard = async () => {

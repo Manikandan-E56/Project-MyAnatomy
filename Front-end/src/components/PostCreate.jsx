@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function PostCreate() {
 
-    const url = "http://localhost:3000";
+    const url = "https://project-myanatomy.onrender.com";
   const navigate = useNavigate();
   const { token, role } = useAuth();
 

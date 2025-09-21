@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Navbar from "../Components/NavBar";
+import { useNavigate } from "react-router-dom"; // Import Navigate
 import BackButton from "../Components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
@@ -11,8 +12,9 @@ export default function ClubMember() {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const url = "http://localhost:3000";
+  const url = "https://project-myanatomy.onrender.com";
 
   
   const fetchMembers = useCallback(async () => {
@@ -56,6 +58,10 @@ export default function ClubMember() {
       }
     }
   };
+
+  if(!token){
+    navigate("/");
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
