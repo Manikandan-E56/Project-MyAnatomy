@@ -1,4 +1,4 @@
-import Student from '../models/StudentSchema.js';
+import Student from '../models/studentSchema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';

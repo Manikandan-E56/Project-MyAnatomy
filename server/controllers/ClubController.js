@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import Club from '../models/ClubSchema.js';
-import Student from '../models/StudentSchema.js';
+import Student from '../models/studentSchema.js';
 
 // --- GET ALL CLUBS ---
 // Fetches a list of all clubs, populating the admin's name and a count of members.

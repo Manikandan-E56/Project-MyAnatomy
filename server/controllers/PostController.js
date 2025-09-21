@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import Post from "../models/PostSchema.js";
 import Admin from "../models/AdminSchema.js";
-import Student from "../models/StudentSchema.js";
+import Student from "../models/studentSchema.js";
 
 
 export const createPost = async (req, res) => {
