@@ -7,7 +7,7 @@ import { GraduationCap, LogIn, UserPlus, Shield, User } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/Context";
+import { useAuth } from "../context/Context";
 
 // ===================
 // Schemas
