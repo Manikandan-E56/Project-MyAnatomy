@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
-import Login from "./Components/Login/Login"
+import Login from "./Components/Login/Login";
 import DashBoard from "./Pages/DashBoard";
 import Post from "./Pages/Post";
 import ClubJoin from "./Pages/ClubJoin";
