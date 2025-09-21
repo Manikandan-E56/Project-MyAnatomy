@@ -45,3 +45,5 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((err) => {
     console.error('Database connection failed!', err.message);
 });
+
+console.log("Render assigned PORT:", PORT);
