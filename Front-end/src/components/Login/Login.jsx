@@ -1,16 +1,19 @@
+// src/pages/auth/Login.jsx
 import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { GraduationCap, LogIn, UserPlus, Shield, User } from "lucide-react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/Context";
 
 // ===================
 // Schemas
 // ===================
 const studentLoginSchema = z.object({
-  rollNumber: z.string().min(1, "Roll number is required"),
+  rollNo: z.string().toLowerCase().min(1, "Roll number is required"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
@@ -20,14 +23,14 @@ const adminLoginSchema = z.object({
 });
 
 const studentRegisterSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  rollNumber: z.string().min(1, "Roll number is required"),
+  name: z.string().toUpperCase().min(1, "Name is required"),
+  rollNo: z.string().toLowerCase().min(1, "Roll number is required"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 const adminRegisterSchema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().toUpperCase().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().regex(/^\d{10}$/, "Phone must be 10 digits"),
   clubName: z.string().min(1, "Club name is required"),
@@ -39,8 +42,12 @@ export default function Login() {
   const [activeMainTab, setActiveMainTab] = useState("login"); // login | register
   const [activeRole, setActiveRole] = useState("student"); // student | admin
 
-  const url="http://localhost:3000/"
-  // Select schema based on state
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const url = "http://localhost:3000/api/";
+
+  // Select schema dynamically
   const schema =
     activeMainTab === "login"
       ? activeRole === "student"
@@ -55,15 +62,57 @@ export default function Login() {
     defaultValues: {},
   });
 
-  const onSubmit = async(values) => {
-    
-    if(activeMainTab === "login"){
-      const resposne=await axios.post(url+"api/")
-  }else{
-      if(activeRole === "student"){
+  // Unified API call
+  const onSubmit = async (values) => {
+    try {
+      let endpoint = "";
+      let successMsg = "";
 
-      }else{
+      if (activeMainTab === "login") {
+        endpoint = activeRole === "student" ? "student/login" : "admin/login";
+        successMsg = "Logged in successfully";
+      } else {
+        endpoint =
+          activeRole === "student" ? "student/register" : "admin/register";
+        successMsg = "Registered successfully";
+      }
 
+      const response = await axios.post(url + endpoint, values);
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success(successMsg);
+
+        if (activeMainTab === "login") {
+        
+          if (activeRole === "student") {
+            login(
+              response.data.token,
+              response.data.student.role,
+              null,
+              response.data.student.id // stdId
+            );
+          } else {
+            login(
+              response.data.token,
+              response.data.admin.role,
+              response.data.admin.club._id, // clubId
+              null
+            );
+          }
+          navigate("/");
+        } else {
+          // 🔑 after register, switch to login
+          setActiveMainTab("login");
+          setActiveRole(activeRole === "student" ? "admin" : "student");
+        }
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      if (error.response?.status === 409) {
+        toast.error("Already registered");
+      } else {
+        toast.error(error.response?.data?.message || "Request failed");
       }
     }
   };
@@ -113,10 +162,7 @@ export default function Login() {
           </div>
 
           {/* Form */}
-          <form
-            className="space-y-6"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             {/* Role Switcher */}
             <div className="flex border border-gray-200 rounded-lg p-1">
               <button
@@ -146,19 +192,18 @@ export default function Login() {
             {/* Input Fields */}
             {activeMainTab === "login" ? (
               <>
-                {/* Login - Student or Admin */}
                 {activeRole === "student" ? (
                   <div>
                     <label className="block text-sm mb-1">Roll Number</label>
                     <input
                       type="text"
-                      {...form.register("rollNumber")}
+                      {...form.register("rollNo")}
                       placeholder="Enter your roll number"
                       className="w-full px-4 py-2 border rounded-lg"
                     />
-                    {form.formState.errors.rollNumber && (
+                    {form.formState.errors.rollNo && (
                       <p className="text-red-500 text-sm">
-                        {form.formState.errors.rollNumber.message}
+                        {form.formState.errors.rollNo.message}
                       </p>
                     )}
                   </div>
@@ -196,7 +241,7 @@ export default function Login() {
               </>
             ) : (
               <>
-                {/* Register - Student */}
+                {/* Register Fields */}
                 {activeRole === "student" ? (
                   <>
                     <div>
@@ -218,13 +263,13 @@ export default function Login() {
                       <label className="block text-sm mb-1">Roll Number</label>
                       <input
                         type="text"
-                        {...form.register("rollNumber")}
+                        {...form.register("rollNo")}
                         placeholder="Enter your roll number"
                         className="w-full px-4 py-2 border rounded-lg"
                       />
-                      {form.formState.errors.rollNumber && (
+                      {form.formState.errors.rollNo && (
                         <p className="text-red-500 text-sm">
-                          {form.formState.errors.rollNumber.message}
+                          {form.formState.errors.rollNo.message}
                         </p>
                       )}
                     </div>
@@ -261,7 +306,6 @@ export default function Login() {
                   </>
                 ) : (
                   <>
-                    {/* Register - Admin */}
                     <div>
                       <label className="block text-sm mb-1">Full Name</label>
                       <input
