@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import Admin from '../models/AdminSchema.js';
 import Student from '../models/StudentSchema.js';
 
+
 // A single middleware to handle authentication for both roles
 export const authMiddleware = (requiredRole) => async (req, res, next) => {
     try {
