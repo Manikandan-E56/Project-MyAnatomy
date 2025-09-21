@@ -2,13 +2,13 @@ import mongoose from 'mongoose';
 import Post from '../models/PostSchema.js';
 import Admin from '../models/AdminSchema.js';
 import Club from '../models/ClubSchema.js';
+import Student from '../models/StudentSchema.js';
 
 
 export const createPost = async (req, res) => {
     try {
         const { title, description } = req.body;
         const authorId = req.user.id; 
-
         if (!title || !description) {
             return res.status(400).json({ message: 'Title and description are required' });
         }
@@ -35,23 +35,23 @@ export const createPost = async (req, res) => {
 
 export const getPostsByClub = async (req, res) => {
     try {
-        const { clubId } = req.params;
+        
+        const { clubId } =  req.params;
+        
+
 
         if (!mongoose.Types.ObjectId.isValid(clubId)) {
             return res.status(400).json({ message: 'Invalid club ID format' });
         }
 
         const posts = await Post.find({ club: clubId })
-            .populate('author', 'name') // Populate author's name
-            .sort({ createdAt: -1 }); // Show newest posts first
+            .populate('author', 'name')
+            .sort({ createdAt: -1 }); 
 
-        // Add an RSVP count to each post
-        const postsWithRsvpCount = posts.map(post => ({
-            ...post.toObject(),
-            rsvpCount: post.rsvps.length
-        }));
+        
+        
 
-        res.status(200).json({ message: 'Posts fetched successfully', posts: postsWithRsvpCount });
+        res.status(200).json({ message: 'Posts fetched successfully', posts });
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
@@ -161,4 +161,46 @@ export const cancelRsvp = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
+};
+
+// In your postController.js
+export const getPostsByClubs = async (req, res) => {
+  try {
+    
+    const { stdId } =  req.params;
+    
+    const studentDoc = await Student.findById(stdId).select("clubs -_id");
+    if (!studentDoc) {
+        return res.status(404).json({ message: "Student not found" });
+    }
+    
+
+
+    const idsArray = studentDoc.clubs;
+
+    if (!idsArray || idsArray.length === 0) {
+      return res
+        .status(200)
+        .json({ message: "Student is not in any clubs.", posts: [] });
+    }
+
+    const posts = await Post.find({ club: { $in: idsArray } })
+      .populate("author", "name")
+      .sort({ createdAt: -1 });
+
+    const postsWithRsvpCount = posts.map((post) => ({
+      ...post.toObject(),
+      rsvpCount: post.rsvps.length,
+    }));
+
+    res.status(200).json({
+      message: "Posts fetched successfully",
+      posts: postsWithRsvpCount,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
 };

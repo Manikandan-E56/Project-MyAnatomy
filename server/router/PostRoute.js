@@ -2,6 +2,7 @@ import express from 'express';
 import {
     createPost,
     getPostsByClub,
+    getPostsByClubs,
     updatePost,
     deletePost,
     rsvpToPost,
@@ -46,6 +47,8 @@ router.post('/:postId/cancel-rsvp', studentAuth, cancelRsvp);
 
 
 // --- Public Route ---
+
+router.get('/student/:stdId', getPostsByClubs);// Example of a public route to get a post by ID')
 
 // @route   GET /api/posts/club/:clubId
 // @desc    Get all posts for a specific club

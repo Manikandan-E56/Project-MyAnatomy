@@ -1,30 +1,59 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 
-const clubSchema = new mongoose.Schema({
-    name: { 
-        type: String, 
-        required: true, 
-        unique: true 
-    },
-    description: { 
-        type: String, 
-        required: true 
-    },
+// const clubSchema = new mongoose.Schema({
+//     name: { 
+//         type: String, 
+//         required: true, 
+//         unique: true 
+//     },
+//     description: { 
+//         type: String, 
+//         required: true 
+//     },
 
    
-    admin: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Admin',
-        required: true,
-        unique: true 
+//     admin: { 
+//         type: mongoose.Schema.Types.ObjectId, 
+//         ref: 'Admin',
+//         required: true,
+//         unique: true 
+//     },
+
+//     members: [{ 
+//         type: mongoose.Schema.Types.ObjectId, 
+//         ref: 'Student'
+//     }],
+// }, {
+//     timestamps: true
+// });
+
+// export default mongoose.model('Club', clubSchema);
+
+
+
+import mongoose from "mongoose";
+
+const clubSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true },
+    description: { type: String, required: true },
+
+    // Each club has ONE admin
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+      unique: true,
     },
 
-    members: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Student'
-    }],
-}, {
-    timestamps: true
-});
+    members: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Student",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-export default mongoose.model('Club', clubSchema);
+export default mongoose.model("Club", clubSchema);

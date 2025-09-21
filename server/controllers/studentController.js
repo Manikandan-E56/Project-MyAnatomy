@@ -1,6 +1,7 @@
 import Student from '../models/StudentSchema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -84,8 +85,8 @@ const login = async (req, res) => {
                 id: existingStudent._id,
                 name: existingStudent.name,
                 email: existingStudent.email,
-                rollNo: existingStudent.rollNo,
-                clubs: existingStudent.clubs // Array of joined clubs
+                role: existingStudent.role,
+                clubs: existingStudent.clubs 
             }
         });
     } catch (err) {
@@ -93,4 +94,85 @@ const login = async (req, res) => {
     }
 };
 
-export { login, register };
+const GetStudentProfile = async (req, res) => { 
+    try{
+        const {stdId} = req.params;
+       
+
+        if (!stdId) {
+            return res.status(400).json({ message: 'Student ID is required' });
+        }
+        const student = await Student.findById(stdId).select('name email rollNo clubs').populate('clubs', 'name description');
+
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        res.status(200).json({ message: 'Student profile fetched successfully', student });
+
+
+    }catch(err){
+        res.status(500).json({ message: 'Internal Server Error', error: err.message });
+    }
+}
+
+const StudentMyClubs = async (req, res) => {
+    try {
+        const { stdId } = req.params;
+
+        if (!stdId) {
+            return res.status(400).json({ message: 'Student ID is required' });
+        }
+
+        const student = await Student.findById(stdId)
+            .select('clubs') // Select only the 'clubs' field from the student
+            .populate({
+                path: 'clubs', // The field to populate in the Student model
+                select: 'name', // Select the 'name' field from each club
+                populate: {
+                    path: 'admin', 
+                    select: 'name email' 
+                }
+            });
+
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+        
+        res.status(200).json({ message: 'Student clubs fetched successfully', clubs: student.clubs });
+
+    } catch (err) {
+        res.status(500).json({ message: 'Internal Server Error', error: err.message });
+    }
+};
+
+const dashboard = async (req, res) => {
+  try {
+    const { stdId } = req.params;
+
+    if (!stdId) {
+      return res.status(400).json({ message: "Student ID is required" });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(stdId)) {
+      return res.status(400).json({ message: "Invalid student ID format" });
+    }
+
+    const student = await Student.findById(stdId).select("name");
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    res.status(200).json({
+      message: "Student dashboard data",
+      student,
+    });
+  } catch (error) {
+    console.error("Error fetching student dashboard:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export { login, register, GetStudentProfile,StudentMyClubs, dashboard };

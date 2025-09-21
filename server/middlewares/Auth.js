@@ -35,6 +35,7 @@ export const authMiddleware = (requiredRole) => async (req, res, next) => {
             role: user.role,
         };
         
+        
         next(); // Proceed to the next middleware or controller
     } catch (error) {
         res.status(401).json({ message: 'Token is not valid.', error: error.message });
