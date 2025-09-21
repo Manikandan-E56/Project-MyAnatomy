@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import NavBar from "../Components/NavBar";
-import BackButton from "../Components/Backbtn";
+import NavBar from "../components/NavBar";
+import BackButton from "../components/Backbtn";
 import { Users, UserPlus } from "lucide-react"; // Icons for the component
 import { useAuth } from "../context/Context";
 import { useParams } from "react-router-dom";

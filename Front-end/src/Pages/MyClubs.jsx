@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom"; // Import Navigate
-import Navbar from "../Components/NavBar";
-import BackButton from "../Components/Backbtn";
+import Navbar from "../components/NavBar";
+import BackButton from "../components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
-import LoadingSpinner from "../Components/Loading";
+import Loading from "../components/Loading";
 
 
 
@@ -60,7 +60,7 @@ export default function MyClubs() {
 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           {isLoading ? (
-            <LoadingSpinner/>
+            <Loading/>
           ) : (
             <table className="w-full text-left">
               <thead className="bg-gray-200">

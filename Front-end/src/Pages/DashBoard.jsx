@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Components/NavBar";
+import Navbar from "../components/NavBar";
 import { useAuth } from "../context/Context";
 
 import CountUp from "react-countup";
 import { CiSearch } from "react-icons/ci";
 
-import ImageSlider from "../Components/ImageSlider";
-import ClubCard from "../Components/ClubCard";
-import { data } from "react-router-dom";
+import ImageSlider from "../components/ImageSlider";
+import ClubCard from "../components/ClubCard";
+
 
 const ApprovalRequest = ({ name, id }) => {
   return (

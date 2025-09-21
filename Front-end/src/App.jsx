@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import "./App.css";
-import Login from "./components/Login";
+import Login from "./components/Login.jsx";
 import DashBoard from "./Pages/DashBoard";
 import Post from "./Pages/Post";
 import ClubJoin from "./Pages/ClubJoin";
-import PostCreate from "./Components/PostCreate";
+import PostCreate from "./components/PostCreate.jsx";
 import Settings from "./Pages/Settings";
 import ClubMember from "./Pages/ClubMember";
 import MyClubs from "./Pages/MyClubs";

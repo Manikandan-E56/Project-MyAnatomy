@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
-import Navbar from "../Components/NavBar";
-import Backbtn from "../Components/Backbtn";
+import Navbar from "../components/NavBar";
+import Backbtn from "../components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LoadingSpinner from "../Components/Loading";
+import Loading from "../components/Loading";
 
 export default function Post() {
   const { token, clubId, stdId, role } = useAuth();
@@ -67,7 +67,7 @@ export default function Post() {
   }
 
   if (isLoading) {
-    return <LoadingSpinner />;  
+    return <Loading />;  
   }
   
   return (

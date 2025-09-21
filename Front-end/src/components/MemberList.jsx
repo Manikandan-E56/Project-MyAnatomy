@@ -1,10 +1,10 @@
 import React from 'react';
-import LoadingSpinner from './Loading'; // Make sure you have this component
+import Loading from '../components/Loading'; // Make sure you have this component
 
 export default function MemberList({ members, isLoading, error, onAccept, onRemove }) {
 
   if (isLoading) {
-    return <div className="flex justify-center p-8"><LoadingSpinner /></div>;
+    return <div className="flex justify-center p-8"><Loading /></div>;
   }
 
   if (error) {

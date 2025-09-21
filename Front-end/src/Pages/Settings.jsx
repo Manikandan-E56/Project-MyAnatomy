@@ -4,11 +4,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { Navigate, useNavigate } from "react-router-dom";
-import Navbar from "../Components/NavBar";
-import Backbtn from "../Components/Backbtn";
-import LoadingSpinner from "../Components/Loading";
+import Navbar from "../components/NavBar";
+import Backbtn from "../components/Backbtn";
+import Loading from "../components/Loading";
 
-// A simple Back Button component
+
 
 export default function Settings() {
   const { role, stdId, token, clubId } = useAuth();
@@ -54,7 +54,7 @@ export default function Settings() {
 
   
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <Loading />;
   }
   if (!token) {
     Navigate("/login");

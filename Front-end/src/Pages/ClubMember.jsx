@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Navbar from "../Components/NavBar";
+import Navbar from "../components/NavBar";
 import { useNavigate } from "react-router-dom"; // Import Navigate
-import BackButton from "../Components/Backbtn";
+import BackButton from "../components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
-import MemberList from "../Components/MemberList"; // We will render this component
+import MemberList from "../components/MemberList"; // We will render this component
 import { toast } from "react-toastify";
 
 export default function ClubMember() {
