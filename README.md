@@ -41,7 +41,7 @@ This is the backend for ClubHub, a robust REST API built with Node.js, Express, 
 
 1. **Clone the repository:**
      ```sh
-     git clone
+     git clone https://github.com/Manikandan-E56/Project-MyAnatomy.git
 2. **Navigate to the backend directory:**
    ```sh
     cd server
