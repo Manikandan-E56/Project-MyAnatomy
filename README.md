@@ -49,8 +49,9 @@ This is the backend for ClubHub, a robust REST API built with Node.js, Express, 
    ```sh
      npm install
 5. ** Create a .env file in the frontend root directory and add the backend API URL:**
-     PORT=3000
-     MANGO_URI="Your Mango url"
+    -- PORT=3000
+    -- MANGO_URI="Your Mango url"
+    -- jwt_Secre_key 
    
 7. **Start the development server:**
    ```sh
