@@ -11,7 +11,6 @@ This is the frontend for ClubHub, a web application built with React. It provide
 - **My Clubs**: View a list of all clubs they have joined.
 - **Club Posts**: See announcements and posts from their clubs.
 - **Settings**: View and manage their personal profile details.
-- **Leave Club**: Ability to leave a club they are a member of.
 
 ### For Admins
 - **Club Dashboard**: Central hub for managing the club.
@@ -45,7 +44,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1. **Clone the repository:**
    ```sh
-   git clone [<your-repository-url>](https://github.com/Manikandan-E56/Project-MyAnatomy.git)]
+   git clone [(https://github.com/Manikandan-E56/Project-MyAnatomy.git)]
 
 2. **Navigate to the frontend directory:**
    ```sh
@@ -55,4 +54,4 @@ Follow these instructions to get a copy of the project up and running on your lo
    npm install
 4. **Start the development server:**
    ```sh
-      npm run dev
+   npm run dev
