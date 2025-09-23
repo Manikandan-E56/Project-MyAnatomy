@@ -45,4 +45,14 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repository-url>
+   git clone [<your-repository-url>](https://github.com/Manikandan-E56/Project-MyAnatomy.git)]
+
+2. **Navigate to the frontend directory:**
+   ```sh
+   cd front-end
+3. **Install NPM packages:**
+   ```sh
+   npm install
+4. **Start the development server:**
+   ```sh
+      npm run dev
