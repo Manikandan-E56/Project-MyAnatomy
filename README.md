@@ -56,3 +56,5 @@ This is the backend for ClubHub, a robust REST API built with Node.js, Express, 
 7. **Start the development server:**
    ```sh
      npm start
+- The API server will be running on http://localhost:3000
+
