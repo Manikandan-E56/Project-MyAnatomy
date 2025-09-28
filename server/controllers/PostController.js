@@ -32,7 +32,7 @@ export const createPost = async (req, res) => {
 };
 
 
-export const getPostsByClub = async (req, res) => {
+export const getPostsByadmin = async (req, res) => {
     try {
         
         const { clubId } =  req.params;
@@ -46,9 +46,6 @@ export const getPostsByClub = async (req, res) => {
         const posts = await Post.find({ club: clubId })
             .populate('author', 'name')
             .sort({ createdAt: -1 }); 
-
-        
-        
 
         res.status(200).json({ message: 'Posts fetched successfully', posts });
     } catch (error) {
