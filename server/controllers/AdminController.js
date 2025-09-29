@@ -142,8 +142,9 @@ const AdminProfile = async (req, res) => {
       return res.status(400).json({ message: "Club ID is required" });
     }
 
-    const adminid = await ClubSchema.findById(clubId).select("admin");
+    const adminid = await Club.findById(clubId).select("admin");
 
+    
     const admin = await Admin.findById(adminid.admin).populate(
       "club",
       "name description"
