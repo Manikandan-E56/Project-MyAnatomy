@@ -16,7 +16,7 @@ export default function ClubMember() {
   const navigate = useNavigate();
 
   
-  const url="http://localhost:3000"
+  const url="https://project-myanatomy.onrender.com"
   
   const fetchMembers = useCallback(async () => {
     if (!clubId || !token) return;

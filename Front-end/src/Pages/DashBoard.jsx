@@ -37,7 +37,7 @@ const stats = {
 const pendingStudents = [];
 
 export default function Dashboard() {
-  const url = "http://localhost:3000";
+  const url = "https://project-myanatomy.onrender.com";
   const { token, role, stdId, clubId } = useAuth();
   const [search, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);

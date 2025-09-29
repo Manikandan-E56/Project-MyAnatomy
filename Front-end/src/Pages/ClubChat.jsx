@@ -16,7 +16,7 @@ export default function ClubChatComponent() {
   const [socket, setSocket] = useState(null);
   const messagesEndRef = useRef(null);
 
-  const url = "http://localhost:3000";
+  const url = "https://project-myanatomy.onrender.com";
 
   // --- 1. Socket.IO connection ---
   useEffect(() => {

@@ -16,7 +16,7 @@ export default function Post() {
   const navigate = useNavigate();
 
  
-const url="http://localhost:3000"
+const url="https://project-myanatomy.onrender.com"
  
   useEffect(() => {
     if (!token) {

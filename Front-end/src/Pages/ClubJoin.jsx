@@ -13,7 +13,7 @@ export default function ClubJoin() {
   const [data, setData] = React.useState(null);
   const [isJoining, setIsJoining] = React.useState(false);
 
-  const url = "http://localhost:3000";
+  const url = "https://project-myanatomy.onrender.com";
 
 
   useEffect(() => {

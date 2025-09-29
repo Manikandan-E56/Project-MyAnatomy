@@ -17,7 +17,7 @@ export default function MyClubs() {
   const [isLoading, setIsLoading] = useState(true); 
 
   
-const url="http://localhost:3000"
+const url="https://project-myanatomy.onrender.com"
 
   const fetchClubs = async () => {
     setIsLoading(true); 
