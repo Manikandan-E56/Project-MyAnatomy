@@ -49,7 +49,6 @@ const io = new Server(httpServer, {
   },
 });
 
-
 // Listen for new connections
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
