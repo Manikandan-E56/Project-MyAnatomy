@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom"; // Import Navigate
 import BackButton from "../components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
-import MemberList from "../Components/MemberList"; // We will render this component
+import MemberList from "../components/MemberList"; // We will render this component
 import { toast } from "react-toastify";
-import Messagebtn from "../Components/Messagebtn";
+import Messagebtn from "../components/Messagebtn";
 
 export default function ClubMember() {
   const { token, clubId } = useAuth();

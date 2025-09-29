@@ -5,9 +5,9 @@ import { useAuth } from "../context/Context";
 import CountUp from "react-countup";
 import { CiSearch } from "react-icons/ci";
 
-import ImageSlider from "../Components/ImageSlider";
-import ClubCard from "../Components/ClubCard";
-import Messagebtn from "../Components/Messagebtn";
+import ImageSlider from "../components/ImageSlider";
+import ClubCard from "../components/ClubCard";
+import Messagebtn from "../components/Messagebtn";
 
 
 const ApprovalRequest = ({ name, id }) => {

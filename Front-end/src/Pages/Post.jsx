@@ -6,7 +6,7 @@ import { useAuth } from "../context/Context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
-import Messagebtn from "../Components/Messagebtn";
+import Messagebtn from "../components/Messagebtn";
 
 export default function Post() {
   const { token, clubId, stdId, role } = useAuth();
