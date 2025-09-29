@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Club from '../models/ClubSchema.js';
 import Student from '../models/studentSchema.js';
+import Conversation from '../models/ConversationSchema.js';
 
 // --- GET ALL CLUBS ---
 // Fetches a list of all clubs, populating the admin's name and a count of members.
@@ -72,25 +73,35 @@ export const joinClub = async (req, res) => {
             const studentId = req.user.id; // From your authentication middleware
 
             if (!mongoose.Types.ObjectId.isValid(clubId)) {
-                return res.status(400).json({ message: 'Invalid club ID format' });
+                // Throw custom error to be caught by the catch block
+                throw { statusCode: 400, message: 'Invalid club ID format' };
             }
 
             const club = await Club.findById(clubId).session(session);
             const student = await Student.findById(studentId).session(session);
 
             if (!club) {
-                return res.status(404).json({ message: 'Club not found' });
+                throw { statusCode: 404, message: 'Club not found' };
             }
             if (!student) {
-                return res.status(404).json({ message: 'Student not found' });
+                throw { statusCode: 404, message: 'Student not found' };
             }
 
             // Check if student is already a member
             if (club.members.includes(studentId)) {
-                return res.status(409).json({ message: 'You are already a member of this club' });
+                throw { statusCode: 409, message: 'You are already a member of this club' };
             }
 
-            // Perform the two-way update
+            // Add student to the club's conversation
+            if (club.conversationId) {
+                await Conversation.findByIdAndUpdate(
+                    club.conversationId,
+                    { $addToSet: { participants: studentId } }, // $addToSet prevents duplicates
+                    { session }
+                );
+            }
+
+            // Perform the two-way update for club and student membership
             club.members.push(studentId);
             student.clubs.push(clubId);
 
@@ -98,19 +109,16 @@ export const joinClub = async (req, res) => {
             await student.save({ session });
         });
 
-        res.status(200).json({ message: 'Successfully joined the club!' });
+        res.status(200).json({ message: 'Successfully joined the club and chat!' });
 
     } catch (error) {
-       
-        if (error.status) {
-            return res.status(error.status).json({ message: error.message });
-        }
-        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        const statusCode = error.statusCode || 500;
+        const message = statusCode === 500 ? "Internal Server Error" : error.message;
+        return res.status(statusCode).json({ message: message, error: error.message });
     } finally {
         await session.endSession();
     }
 };
-
 
 
 export const removeStudentFromClub = async (req, res) => {

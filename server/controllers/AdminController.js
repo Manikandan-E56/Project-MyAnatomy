@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Admin from "../models/AdminSchema.js";
 import Club from "../models/ClubSchema.js";
-import ClubSchema from "../models/ClubSchema.js";
+import Conversation from "../models/ConversationSchema.js";
 
 // A helper function to create a JWT
 const createToken = (userId) => {
@@ -26,56 +26,42 @@ const adminregister = async (req, res) => {
   const session = await mongoose.startSession();
 
   try {
-    let newAdmin, newClub;
+    let newAdmin, newClub, newConversation;
 
     await session.withTransaction(async () => {
-      // --- Check for duplicates ---
-      const existingAdminByEmail = await Admin.findOne({ email }).session(
-        session
-      );
+      // --- Duplicate Checks ---
+      const existingAdminByEmail = await Admin.findOne({ email }).session(session);
       if (existingAdminByEmail) {
-        const error = new Error("Email already registered");
-        error.statusCode = 409;
-        throw error;
+        throw { statusCode: 409, message: "Email already registered" };
       }
 
-      // ## ADDED CHECK FOR PHONE NUMBER ##
-      const existingAdminByPhone = await Admin.findOne({ phone }).session(
-        session
-      );
+      const existingAdminByPhone = await Admin.findOne({ phone }).session(session);
       if (existingAdminByPhone) {
-        const error = new Error("Phone number already registered");
-        error.statusCode = 409;
-        throw error;
+        throw { statusCode: 409, message: "Phone number already registered" };
       }
 
-      const existingClub = await Club.findOne({ name: clubName }).session(
-        session
-      );
+      const existingClub = await Club.findOne({ name: clubName }).session(session);
       if (existingClub) {
-        const error = new Error("Club name already taken");
-        error.statusCode = 409;
-        throw error;
+        throw { statusCode: 409, message: "Club name already taken" };
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      // --- CORRECTED LOGIC (This was already perfect) ---
-      newAdmin = new Admin({
-        name,
-        email,
-        phone,
-        password: hashedPassword,
-        role: "admin",
-      });
-
-      newClub = new Club({
-        name: clubName,
-        description: `Official club for ${clubName}.`,
-        admin: newAdmin._id,
-      });
-
+      // --- Create Documents ---
+      newAdmin = new Admin({ name, email, phone, password: hashedPassword, role: "admin" });
+      newClub = new Club({ name: clubName, description: `Official club for ${clubName}.`, admin: newAdmin._id });
       newAdmin.club = newClub._id;
+
+      // --- NEW CHAT LOGIC ---
+      // 1. Create a new conversation for the club
+      newConversation = new Conversation({
+        participants: [newAdmin._id], // Add the admin as the first participant
+      });
+      await newConversation.save({ session });
+
+      // 2. Link the conversation to the club
+      newClub.conversationId = newConversation._id;
+      // --- END NEW CHAT LOGIC ---
 
       await newAdmin.save({ session });
       await newClub.save({ session });
@@ -84,23 +70,18 @@ const adminregister = async (req, res) => {
     const token = createToken(newAdmin._id);
 
     return res.status(201).json({
-      message: "Admin and Club registered successfully",
+      message: "Admin, Club, and Group Chat registered successfully",
       token,
       adminId: newAdmin._id,
       clubId: newClub._id,
+      conversationId: newConversation._id,
     });
   } catch (err) {
     const statusCode = err.statusCode || 500;
     const message = statusCode === 500 ? "Internal Server Error" : err.message;
-
-    return res.status(statusCode).json({
-      message: message,
-      error: err.message,
-    });
+    return res.status(statusCode).json({ message, error: err.message });
   } finally {
-    if (session) {
-      await session.endSession();
-    }
+    if (session) await session.endSession();
   }
 };
 

@@ -52,6 +52,10 @@ const clubSchema = new mongoose.Schema(
         ref: "Student",
       },
     ],
+     conversationId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Conversation'
+    }
   },
   { timestamps: true }
 );
