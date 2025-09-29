@@ -18,8 +18,6 @@ import ClubChat from "./Pages/ClubChat.jsx";
 function App() {
   return (
     <BrowserRouter>
-  
-  
         <ToastContainer/>
         <Routes>
           <Route path="/login" element={<Login />} />
