@@ -27,9 +27,9 @@ const url="https://project-myanatomy.onrender.com"
 
   let endpointUrl;
   if (role === "student") {
-    endpointUrl = `${url}/post/student/${stdId}`;
+    endpointUrl = `${url}/api/post/student/${stdId}`;
   } else {
-    endpointUrl = `${url}/post/club/${clubId}`;
+    endpointUrl = `${url}/api/post/club/${clubId}`;
   }
 
   // ✅ Fetch posts
