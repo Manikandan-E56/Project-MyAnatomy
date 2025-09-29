@@ -37,10 +37,15 @@ app.get('/', (req, res) => {
 
 // --- SOCKET.IO INTEGRATION ---
 const httpServer = http.createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:5173","https://student-club-management.vercel.app"], // Your React app's URL
+    origin: [
+      "http://localhost:5173", 
+      "https://student-club-management.vercel.app"
+    ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
