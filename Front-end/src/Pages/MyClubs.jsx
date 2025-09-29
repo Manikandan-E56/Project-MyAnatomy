@@ -5,6 +5,7 @@ import BackButton from "../components/Backbtn";
 import { useAuth } from "../context/Context";
 import axios from "axios";
 import Loading from "../components/Loading";
+import Messagebtn from "../Components/Messagebtn";
 
 
 
@@ -15,8 +16,8 @@ export default function MyClubs() {
   const [myClubsData, setMyClubsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
 
-  const url = "https://project-myanatomy.onrender.com";
-
+  
+const url="http://localhost:3000"
 
   const fetchClubs = async () => {
     setIsLoading(true); 
@@ -74,7 +75,7 @@ export default function MyClubs() {
               <tbody>
                 {myClubsData.length > 0 ? (
                   myClubsData.map((club, index) => (
-                    <tr key={club._id} className="border-b border-gray-200 hover:bg-gray-50">
+                    <tr key={club._id} className="border-b border-gray-200 hover:bg-gray-50 cursor-pointer ">
                       <td className="p-4 text-gray-700">
                         {String(index + 1).padStart(2, "0")}
                       </td>
@@ -82,7 +83,9 @@ export default function MyClubs() {
                      
                       <td className="p-4 text-gray-700">{club.admin?.name}</td>
                       <td className="p-4 text-gray-700">{club.admin?.email}</td>
+                      
                     </tr>
+                    
                   ))
                 ) : (
                   <tr>
@@ -96,6 +99,7 @@ export default function MyClubs() {
           )}
         </div>
       </main>
+      <Messagebtn/>
     </div>
   );
 }

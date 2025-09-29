@@ -5,8 +5,9 @@ import { useAuth } from "../context/Context";
 import CountUp from "react-countup";
 import { CiSearch } from "react-icons/ci";
 
-import ImageSlider from "../components/ImageSlider";
-import ClubCard from "../components/ClubCard";
+import ImageSlider from "../Components/ImageSlider";
+import ClubCard from "../Components/ClubCard";
+import Messagebtn from "../Components/Messagebtn";
 
 
 const ApprovalRequest = ({ name, id }) => {
@@ -30,13 +31,13 @@ const ApprovalRequest = ({ name, id }) => {
 
 const stats = {
   studentCount: 45,
-  postCount: 45,
+  postCount: 2,
 };
 
 const pendingStudents = [];
 
 export default function Dashboard() {
-  const url = "https://project-myanatomy.onrender.com";
+  const url = "http://localhost:3000";
   const { token, role, stdId, clubId } = useAuth();
   const [search, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
@@ -228,6 +229,7 @@ export default function Dashboard() {
           </div>
         </main>
       )}
+      <Messagebtn/>
     </div>
   );
 }

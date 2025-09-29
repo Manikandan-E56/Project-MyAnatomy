@@ -7,11 +7,6 @@ export default function BackButton() {
 
   const navigate = useNavigate();
 
- 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   return (
       <button
         onClick={() => navigate(-1)} // Navigates to the previous page

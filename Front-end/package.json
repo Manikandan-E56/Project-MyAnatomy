@@ -8,7 +8,6 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
-    
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -24,6 +23,7 @@
     "react-slick": "^0.31.0",
     "react-toastify": "^11.0.5",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.1.13",
     "zod": "^4.1.9"
   },

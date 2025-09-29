@@ -10,6 +10,7 @@ import PostCreate from "./components/PostCreate.jsx";
 import Settings from "./Pages/Settings";
 import ClubMember from "./Pages/ClubMember";
 import MyClubs from "./Pages/MyClubs";
+import ClubChat from "./Pages/ClubChat.jsx";
 
 
 // 1. Import the component
@@ -28,6 +29,7 @@ function App() {
           <Route path="clubmember/:clubId" element={<ClubMember/>}/>
           <Route path="/myclubs" element={<MyClubs/>}/>
           <Route path="/settings" element={<Settings/>}/>
+          <Route path="/club/chat" element={<ClubChat />} />
         </Routes>
     
     </BrowserRouter>

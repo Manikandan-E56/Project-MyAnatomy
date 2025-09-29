@@ -6,6 +6,7 @@ import { useAuth } from "../context/Context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import Messagebtn from "../Components/Messagebtn";
 
 export default function Post() {
   const { token, clubId, stdId, role } = useAuth();
@@ -14,8 +15,8 @@ export default function Post() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const url = "https://project-myanatomy.onrender.com/api";
-
+ 
+const url="http://localhost:3000"
  
   useEffect(() => {
     if (!token) {
@@ -114,6 +115,7 @@ export default function Post() {
           </div>
         )}
       </div>
+      <Messagebtn/>
     </div>
   );
 }

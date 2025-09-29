@@ -136,9 +136,9 @@ export default function Navbar() {
               <button
                 className="bg-red-500 text-white py-2 px-4 rounded-md flex items-center gap-2"
                 onClick={() => {
+                  navigate("/");
                   logout();
                   setIsOpen(false);
-                  navigate("/");
                 }}
               >
                 <LogOut size={16} /> Logout
