@@ -3,7 +3,6 @@ import { useAuth } from "../context/Context"; // Adjust path to your context
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import Backbtn from "../components/Backbtn";
 import Loading from "../components/Loading";
