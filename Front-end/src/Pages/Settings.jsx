@@ -56,10 +56,7 @@ export default function Settings() {
   if (isLoading) {
     return <Loading />;
   }
-   if (!token || role !== "student") {
-    return <Navigate to="/login" />;
-  }
-
+   
   return (
     <div className="bg-gray-50 w-full min-h-screen  font-sans">
       <Navbar />
