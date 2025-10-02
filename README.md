@@ -10,7 +10,9 @@ This is the frontend for ClubHub, a web application built with React. It provide
 - **Authentication**: Secure login to access the platform.
 - **My Clubs**: View a list of all clubs they have joined.
 - **Club Posts**: See announcements and posts from their clubs.
+- **Chat **: Chat With Club Member.
 - **Settings**: View and manage their personal profile details.
+  
 
 ### For Admins
 - **Club Dashboard**: Central hub for managing the club.
